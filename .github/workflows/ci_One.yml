@@ -1,3 +1,33 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Codespaces
+Marketplace
+Explore
+ 
+@Siddharthaaa21 
+vishalchauhan91196
+/
+upes-java-code
+Public
+Fork your own copy of vishalchauhan91196/upes-java-code
+Code
+Issues
+Pull requests
+1
+Actions
+Projects
+Security
+Insights
+upes-java-code/.github/workflows/ci.yml
+
+vishalchauhan91196 1
+Latest commit 6e0b75c now
+ History
+ 0 contributors
+40 lines (32 sloc)  1.12 KB
+
 # This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
 
@@ -29,3 +59,12 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+
+    - name: Build and Push Docker Image
+      uses: mr-smithers-excellent/docker-build-push@v4
+      with:
+        image: siddharthaaa21/java-application
+        registry: docker.io
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}  
+
